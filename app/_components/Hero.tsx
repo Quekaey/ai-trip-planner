@@ -1,5 +1,26 @@
 import { Textarea } from "@/components/ui/textarea";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { Globe2, Landmark, Plane, Send, WholeWord } from "lucide-react";
+
+const suggestions = [
+  {
+    title: "Create New Trip",
+    icon: <Globe2 className="text-blue-500 h-5 w-5 hover:icon-white" />,
+  },
+  {
+    title: "Inspire Me Where To Go",
+    icon: <Plane className="text-green-500 h-5 w-5" />,
+  },
+  {
+    title: "Discover Hidden Gems",
+    icon: <Landmark className="text-orange-500 h-5 w-5" />,
+  },
+  {
+    title: "Adventure Destination",
+    icon: <WholeWord className="text-yellow-500 h-5 w-5" />,
+  },
+];
 
 function Hero() {
   return (
@@ -16,14 +37,29 @@ function Hero() {
         </p>
         {/* Input Box */}
         <div>
-          <div>
+          <div className="border rounded-2xl p-4 shadow relative">
             <Textarea
               placeholder="Create a trip for Paris from New York"
-              className="w-full h-28 bg-transparent border-none focus-visible:ring-0"
+              className="w-full h-28 bg-transparent border-none focus-visible:ring-0 shadow-none resize-none"
             />
+            <Button size={"icon"} className="absolute bottom-6 right-6">
+              <Send className="h-4 w-4" />
+            </Button>
           </div>
         </div>
         {/* Suggestion list */}
+        <div className="flex gap-5">
+          {suggestions.map((suggestions, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 border rounded-full p-2 cursor-pointer hover:bg-primary hover:text-white"
+            >
+              {suggestions.icon}
+              <h2 className="text-sm">{suggestions.title}</h2>
+            </div>
+          ))}
+        </div>
+
         {/* Video Section */}
       </div>
     </div>
